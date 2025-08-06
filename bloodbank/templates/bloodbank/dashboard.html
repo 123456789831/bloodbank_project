@@ -1,0 +1,21 @@
+{% if request.session.admin %}
+    <h3>User Blood Requests</h3>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>User Name</th>
+            <th>Mobile Number</th>
+            <th>Blood Group</th>
+            <th>Available</th>
+        </tr>
+        {% for req in requests %}
+        <tr>
+            <td>{{ req.id }}</td>
+            <td>{{ req.user.name }}</td>
+            <td><a href="tel:{{ req.user.mobile }}">{{ req.user.mobile }}</a></td>
+            <td>{{ req.blood_group }}</td>
+            <td>{{ req.is_available|yesno:"Yes,No" }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
